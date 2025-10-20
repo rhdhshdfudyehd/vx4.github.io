@@ -14,6 +14,7 @@ $(function() {
         $('.mobile-overlay').removeClass('active');
     });
 
+    let countdown, timeLeft = 15 * 60;
     const defaultOptions = {duration: 4000, showClose: true, showProgress: true, position: 'top-right'},
         iconMap = {
         success: '<i class="fas fa-check"></i>',
@@ -67,6 +68,35 @@ $(function() {
         totalEle.text('$' + (quantity * price).toFixed(2));
     }
 
+    function startCountdown() {
+        clearInterval(countdown);
+        timeLeft = 15 * 60; // 重置为15分钟
+        updateCountdownDisplay();
+
+        countdown = setInterval(() => {
+            timeLeft--;
+            updateCountdownDisplay();
+
+            if (timeLeft <= 0) {
+                clearInterval(countdown);
+                $('#countdownTimer').text("00:00");
+                $('.countdown-section').html(`
+                <div class="countdown-expired">
+                    <i class="fas fa-exclamation-triangle"></i> 订单已超时，请重新下单
+                </div>
+            `);
+            }
+        }, 1000);
+    }
+
+    function updateCountdownDisplay() {
+        const minutes = Math.floor(timeLeft / 60);
+        const seconds = timeLeft % 60;
+        $('#countdownTimer').text(
+            `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`
+        );
+    }
+
     $('#decrease').click(function() {
         const currentValue = parseInt(quantityEle.val());
         if (currentValue > 1) {
@@ -90,6 +120,11 @@ $(function() {
         }
     });
 
+    $('#closeModal').on('click', function() {
+        $('#paymentModal').removeClass('show');
+        clearInterval(countdown);
+    });
+
     $('.buy-button').click(function() {
         const email = $('#email').val();
         const quantity = parseInt($('#quantity').val());
@@ -99,7 +134,11 @@ $(function() {
             return;
         }
 
-        $('#orderQuantity').text(quantity + '个');
+        startCountdown();
+        toast('success', '', '创建订单成功');
+
+        $('#order-email').text(email);
+        // $('#orderQuantity').text(quantity + '个');
         $('#paymentAmount').text('$' + (quantity * price).toFixed(2));
         $('#paymentPrice').text('$' + (price).toFixed(2));
         paymentModalEle.addClass('show').css('display', 'flex');
@@ -132,10 +171,10 @@ $(function() {
 
     function updatePaymentAddress(method) {
         var addresses = {
-            'usdt-trc20': 'TCz8hQirLYwhaaNcDtDdkpoi49Kirrcg2V',
-            'usdt-erc20': '0xE0Cd59dfB0018D1Cf907DBc1a1F013fF678F7F9a',
-            'usdt-bep20': '0xE0Cd59dfB0018D1Cf907DBc1a1F013fF678F7F9a',
-            'usdt-sol': '99nRRoJYdYHYwuccWm3vGE8nLYtgYZTKQXTa2scMUgL2'
+            'usdt-trc20': 'TGipVxhnxr7LPxSHmRWkcSVjhHGARgFvzV',
+            'usdt-erc20': '0x59DC9F85E13E7Da4518E45abD8E6c19435Ab9E1B',
+            'usdt-bep20': '0x59DC9F85E13E7Da4518E45abD8E6c19435Ab9E1B',
+            'usdt-sol': '9Taqzs8cMSjopWi4HZZhSHF6NUgezsLUj1cmZ4GpXGbb'
         }, network = (method.toUpperCase()).split('-');
 
         $('.network_type').text(network[0] +' '+ network[1]);

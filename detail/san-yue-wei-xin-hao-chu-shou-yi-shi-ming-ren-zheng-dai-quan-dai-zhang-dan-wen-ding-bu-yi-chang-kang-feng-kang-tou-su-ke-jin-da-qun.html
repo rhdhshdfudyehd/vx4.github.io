@@ -24,7 +24,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="https://www.kroloffs.com/static/style03/img/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="https://www.kroloffs.com/static/style03/img/favicon-16x16.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="/static/style03/css/base.css?v=202509041328">
+    <link rel="stylesheet" href="/static/style03/css/base.css?v=202510202051">
 </head>
 <body>
 <header>
@@ -82,7 +82,7 @@
 
             <div class="product-detail-stock">
                 <i class="fas fa-check-circle stock-icon"></i>
-                <span class="stock-text">现货充足，库存 <span class="stock-number">523</span> 个</span>
+                <span class="stock-text">现货充足，库存 <span class="stock-number">490</span> 个</span>
             </div>
 
             <ul class="product-features">
@@ -159,7 +159,7 @@
         <div class="payment-header">
             <h3 class="payment-title">
                 <i class="fas fa-credit-card"></i>
-                选择支付方式
+                订单信息
             </h3>
             <button class="close-btn" id="closeModal">
                 <i class="fas fa-times"></i>
@@ -168,6 +168,12 @@
 
         <div class="payment-body">
             <div class="payment-left">
+                <div class="countdown-section">
+                    <div class="countdown-title">请在以下时间内完成支付</div>
+                    <div class="countdown-timer" id="countdownTimer">15:00</div>
+                    <div class="countdown-warning">超时未支付订单将自动取消</div>
+                </div>
+
                 <div class="order-info-section">
                     <div class="order-info">
                         <span>商品名称：</span>
@@ -178,8 +184,8 @@
                         <span id="paymentPrice">$0.00</span>
                     </div>
                     <div class="order-info">
-                        <span>购买数量：</span>
-                        <span id="orderQuantity">1个</span>
+                        <span>收件邮箱：</span>
+                        <span id="order-email">-</span>
                     </div>
                     <div class="order-info">
                         <span>支付金额：</span>
@@ -267,6 +273,6 @@
 <script type="text/javascript" src="/static/style03/js/jquery.min.js"></script>
 <script type="text/javascript" src="/static/style03/js/qrcode.min.js"></script>
 <script type="text/javascript" src="/static/style03/js/clipboard.min.js"></script>
-<script type="text/javascript" src="/static/style03/js/base.js?v=202509041328"></script>
+<script type="text/javascript" src="/static/style03/js/base.js?v=202510202051"></script>
 </body>
 </html>
