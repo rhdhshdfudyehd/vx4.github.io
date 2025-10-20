@@ -138,6 +138,7 @@ $(function() {
         toast('success', '', '创建订单成功');
 
         $('#order-email').text(email);
+        $('#order-name').text($('.product-d-title').text());
         // $('#orderQuantity').text(quantity + '个');
         $('#paymentAmount').text('$' + (quantity * price).toFixed(2));
         $('#paymentPrice').text('$' + (price).toFixed(2));

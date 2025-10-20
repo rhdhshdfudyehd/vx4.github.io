@@ -24,7 +24,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="https://www.kroloffs.com/static/style03/img/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="https://www.kroloffs.com/static/style03/img/favicon-16x16.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="/static/style03/css/base.css?v=202510202051">
+    <link rel="stylesheet" href="/static/style03/css/base.css?v=202510202200">
 </head>
 <body>
 <header>
@@ -82,7 +82,7 @@
 
             <div class="product-detail-stock">
                 <i class="fas fa-check-circle stock-icon"></i>
-                <span class="stock-text">现货充足，库存 <span class="stock-number">269</span> 个</span>
+                <span class="stock-text">现货充足，库存 <span class="stock-number">137</span> 个</span>
             </div>
 
             <ul class="product-features">
@@ -109,6 +109,36 @@
                     <button type="button" class="quantity-btn increase" id="increase">
                         <i class="fas fa-plus"></i>
                     </button>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">支付方式</label>
+                <div class="payment-options">
+                    <div class="payment-option selected" data-method="usdt-trc20">
+                        <div class="payment-icon">
+                            <img src="/static/style03/img/usdt-trc20.png" alt="USDT-TRC20" width="48" height="48">
+                        </div>
+                        <div class="payment-name">USDT-TRC20</div>
+                    </div>
+                    <div class="payment-option" data-method="usdt-erc20">
+                        <div class="payment-icon">
+                            <img src="/static/style03/img/usdt-erc20.png" alt="USDT-ERC20" width="48" height="48">
+                        </div>
+                        <div class="payment-name">USDT-ERC20</div>
+                    </div>
+                    <div class="payment-option" data-method="usdt-bep20">
+                        <div class="payment-icon">
+                            <img src="/static/style03/img/usdt-bep20.png" alt="USDT-BEP20" width="48" height="48">
+                        </div>
+                        <div class="payment-name">USDT-BEP20</div>
+                    </div>
+                    <div class="payment-option" data-method="usdt-sol">
+                        <div class="payment-icon">
+                            <img src="/static/style03/img/usdt-sol.png" alt="USDT-SOL" width="48" height="48">
+                        </div>
+                        <div class="payment-name">USDT-SOL</div>
+                    </div>
                 </div>
             </div>
 
@@ -191,52 +221,20 @@
 
                 <div class="order-info-section">
                     <div class="order-info">
-                        <span>商品名称：</span>
-                        <span>国卡微信24h在线自助扫码辅助注册</span>
+                        <span>商品名称</span>
+                        <span id="order-name">-</span>
                     </div>
                     <div class="order-info">
-                        <span>商品单价：</span>
+                        <span>商品单价</span>
                         <span id="paymentPrice">$0.00</span>
                     </div>
                     <div class="order-info">
-                        <span>收件邮箱：</span>
+                        <span>收件邮箱</span>
                         <span id="order-email">-</span>
                     </div>
                     <div class="order-info">
-                        <span>支付金额：</span>
+                        <span>支付金额</span>
                         <span id="paymentAmount">$0.00</span>
-                    </div>
-                </div>
-
-                <div class="payment-methods">
-                    <h4 class="section-title">
-                        支付网络
-                    </h4>
-                    <div class="payment-options">
-                        <div class="payment-option selected" data-method="usdt-trc20">
-                            <div class="payment-icon">
-                                <img src="/static/style03/img/usdt-trc20.png" alt="USDT-TRC20" width="48" height="48">
-                            </div>
-                            <div class="payment-name">USDT-TRC20</div>
-                        </div>
-                        <div class="payment-option" data-method="usdt-erc20">
-                            <div class="payment-icon">
-                                <img src="/static/style03/img/usdt-erc20.png" alt="USDT-ERC20" width="48" height="48">
-                            </div>
-                            <div class="payment-name">USDT-ERC20</div>
-                        </div>
-                        <div class="payment-option" data-method="usdt-bep20">
-                            <div class="payment-icon">
-                                <img src="/static/style03/img/usdt-bep20.png" alt="USDT-BEP20" width="48" height="48">
-                            </div>
-                            <div class="payment-name">USDT-BEP20</div>
-                        </div>
-                        <div class="payment-option" data-method="usdt-sol">
-                            <div class="payment-icon">
-                                <img src="/static/style03/img/usdt-sol.png" alt="USDT-SOL" width="48" height="48">
-                            </div>
-                            <div class="payment-name">USDT-SOL</div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -247,7 +245,7 @@
                         <h4 class="section-title">
                             <span class="network_type">TRC20</span>充值地址
                         </h4>
-                        <textarea class="address-input" id="walletAddress" readonly></textarea>
+                        <div class="address-value" id="walletAddress"></div>
                         <button type="button" class="copy-btn">复制地址</button>
                     </div>
                     <div class="qr-section">
@@ -288,6 +286,6 @@
 <script type="text/javascript" src="/static/style03/js/jquery.min.js"></script>
 <script type="text/javascript" src="/static/style03/js/qrcode.min.js"></script>
 <script type="text/javascript" src="/static/style03/js/clipboard.min.js"></script>
-<script type="text/javascript" src="/static/style03/js/base.js?v=202510202051"></script>
+<script type="text/javascript" src="/static/style03/js/base.js?v=202510202200"></script>
 </body>
 </html>
